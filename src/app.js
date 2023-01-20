@@ -1,10 +1,12 @@
 import {getBlockTime} from './js-block-time'
 import {getBlockTable} from './js-block-table'
-import { getAmountDonates } from './js-block-amount'
+
 
 export class App {
   run(){
     getBlockTable()
+
+let arrayDonates =[] // задаем массив для наполнеиня значениями донатов
 
 const formDonation = document.querySelector('.donate-form')
 formDonation.addEventListener('submit',(event)=>{
@@ -25,20 +27,15 @@ donates.textContent = time
 const donatesB = document.createElement('b')
 donatesB.textContent = ` - ${taskValue}$`
 donates.append(donatesB)
-addnewContainerDonate.append(donates)
+addnewContainerDonate.insertAdjacentElement('afterbegin', donates)
 
 // реализация логики подсчета донатов
 const totalAmount = document.querySelector('#total-amount')
-
- const sumDotates = (value = 0)=>{
-    return (taskValue) =>{
-      return value + Number(taskValue)
-    }
- }
-const result1 = sumDotates (0)
-const result = result1 (taskValue)
-
-totalAmount.textContent = `${result1 (taskValue)}$`
+arrayDonates.push(Number(taskValue))
+const result = arrayDonates.reduce((acc, num)=>{
+  return acc + num
+}, 0)
+totalAmount.textContent = `${result} $`
 
 // Очищаем поля формы 
 event.target.reset()

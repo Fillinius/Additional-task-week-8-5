@@ -1,6 +1,6 @@
 export function getBlockTime(){
   const date = new Date()
-  //console.log('Дата сейчас',date)
-  return date
+    return date
 }
+// требуется поменять еще формат времени, но это уже в др итерации
 
